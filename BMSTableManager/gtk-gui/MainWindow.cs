@@ -19,15 +19,15 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox1;
 
-	private global::Gtk.Entry entry1;
+	private global::Gtk.Entry TableURLEntry;
 
-	private global::Gtk.Button button1;
+	private global::Gtk.Button LoadURLButton;
 
 	private global::Gtk.HSeparator hseparator2;
 
 	private global::Gtk.VBox vbox4;
 
-	private global::Gtk.ComboBox combobox2;
+	private global::Gtk.ComboBox TableSelectorComboBox;
 
 	private global::Gtk.HBox hbox2;
 
@@ -76,22 +76,22 @@ public partial class MainWindow
 		this.hbox1.Name = "hbox1";
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
-		this.entry1 = new global::Gtk.Entry();
-		this.entry1.CanFocus = true;
-		this.entry1.Name = "entry1";
-		this.entry1.IsEditable = true;
-		this.entry1.InvisibleChar = '●';
-		this.hbox1.Add(this.entry1);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.entry1]));
+		this.TableURLEntry = new global::Gtk.Entry();
+		this.TableURLEntry.CanFocus = true;
+		this.TableURLEntry.Name = "TableURLEntry";
+		this.TableURLEntry.IsEditable = true;
+		this.TableURLEntry.InvisibleChar = '●';
+		this.hbox1.Add(this.TableURLEntry);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.TableURLEntry]));
 		w3.Position = 0;
 		// Container child hbox1.Gtk.Box+BoxChild
-		this.button1 = new global::Gtk.Button();
-		this.button1.CanFocus = true;
-		this.button1.Name = "button1";
-		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
-		this.hbox1.Add(this.button1);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.button1]));
+		this.LoadURLButton = new global::Gtk.Button();
+		this.LoadURLButton.CanFocus = true;
+		this.LoadURLButton.Name = "LoadURLButton";
+		this.LoadURLButton.UseUnderline = true;
+		this.LoadURLButton.Label = global::Mono.Unix.Catalog.GetString("Load URL");
+		this.hbox1.Add(this.LoadURLButton);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.LoadURLButton]));
 		w4.Position = 1;
 		w4.Expand = false;
 		w4.Fill = false;
@@ -113,10 +113,10 @@ public partial class MainWindow
 		this.vbox4.Name = "vbox4";
 		this.vbox4.Spacing = 6;
 		// Container child vbox4.Gtk.Box+BoxChild
-		this.combobox2 = global::Gtk.ComboBox.NewText();
-		this.combobox2.Name = "combobox2";
-		this.vbox4.Add(this.combobox2);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.combobox2]));
+		this.TableSelectorComboBox = global::Gtk.ComboBox.NewText();
+		this.TableSelectorComboBox.Name = "TableSelectorComboBox";
+		this.vbox4.Add(this.TableSelectorComboBox);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.TableSelectorComboBox]));
 		w7.Position = 0;
 		w7.Expand = false;
 		w7.Fill = false;
@@ -129,7 +129,7 @@ public partial class MainWindow
 		this.button2.CanFocus = true;
 		this.button2.Name = "button2";
 		this.button2.UseUnderline = true;
-		this.button2.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
+		this.button2.Label = global::Mono.Unix.Catalog.GetString("Load Table");
 		this.hbox2.Add(this.button2);
 		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.button2]));
 		w8.Position = 0;
@@ -140,7 +140,7 @@ public partial class MainWindow
 		this.button3.CanFocus = true;
 		this.button3.Name = "button3";
 		this.button3.UseUnderline = true;
-		this.button3.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
+		this.button3.Label = global::Mono.Unix.Catalog.GetString("Delete Table");
 		this.hbox2.Add(this.button3);
 		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.button3]));
 		w9.Position = 1;
@@ -164,5 +164,6 @@ public partial class MainWindow
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.SelectLR2FolderAction.Activated += new global::System.EventHandler(this.OnSelectLR2FolderActionActivated);
+		this.LoadURLButton.Clicked += new global::System.EventHandler(this.OnLoadURLButtonClicked);
 	}
 }
