@@ -51,17 +51,19 @@ public partial class MainWindow : Gtk.Window
             try
             {
                 tables.Add(url, new BMSTable(url));
+                TableSelectorComboBox.AppendText(tables[url].TableName);
+                TableURLEntry.Text = "";
 
                 MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Info, 
                                                                                             ButtonsType.Close, "Table added successfully");
                 dialog.Run();
                 dialog.Destroy();
             }
-            catch
+            catch(Exception ex)
             {
                 //TODO: Make more descriptive errors
                 MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Error, 
-                                                         ButtonsType.Close, "Error loading url");
+                                                         ButtonsType.Close, "Error loading url, " + ex.ToString());
                 dialog.Run();
                 dialog.Destroy();
             }

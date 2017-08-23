@@ -36,22 +36,21 @@ namespace BMSTableManager.TableInfo
             
             headerurl = constructURL(tableurl, jsonheader);
 
-            WebClient client = new WebClient();
-            string jsonheaderdata = client.DownloadString(headerurl);
+            //Download header data and table data
+            //Code is the same so just use this method to avoid code duplication
+            UpdateTable();
+        }
 
-            metadata = JsonConvert.DeserializeObject<TableHeader>(jsonheaderdata);
-
-            //Header json contains an entry pointing to the main json
-            jsonurl = constructURL(tableurl, metadata.data_url);
-
-            json = client.DownloadString(jsonurl);
+        public string TableName
+        {
+            get { return metadata.name; }
         }
 
         //Updates the table by redownloading all of the info
         public void UpdateTable()
         {
             //Redownload metadata
-            WebClient client = new WebClient();
+            WebClient client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
             string jsonheaderdata = client.DownloadString(headerurl);
             metadata = JsonConvert.DeserializeObject<TableHeader>(jsonheaderdata);
 
@@ -63,7 +62,7 @@ namespace BMSTableManager.TableInfo
         //Some sites may only link the name of the json header/table json, so we must construct the url ourselves
         private string constructURL(string url, string newsection)
         {
-            if(!newsection.Contains("/"))
+            if(!newsection.StartsWith("http"))
             {
                 //the +1 allows us to include the slash
                 return url.Substring(0, url.LastIndexOf('/')+1) + newsection;
