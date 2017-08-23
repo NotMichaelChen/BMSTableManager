@@ -131,12 +131,13 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Button" id="button2">
+                  <widget class="Gtk.Button" id="LoadTableButton">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Load Table</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnLoadTableButtonClicked" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>

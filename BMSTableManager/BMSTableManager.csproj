@@ -75,14 +75,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableInfo\BMSTable.cs" />
     <Compile Include="TableInfo\TableHeader.cs" />
-    <Compile Include="SelectLR2Folder.cs" />
+    <Compile Include="SelectLR2FolderWindow.cs" />
     <Compile Include="gtk-gui\BMSTableManager.SelectLR2Folder.cs" />
+    <Compile Include="TableLoaders\CustomFolderGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TableInfo\" />
+    <Folder Include="TableLoaders\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

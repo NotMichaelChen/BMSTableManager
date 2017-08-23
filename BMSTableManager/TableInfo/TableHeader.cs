@@ -8,5 +8,6 @@ namespace BMSTableManager.TableInfo
         public string data_url;
         public string name;
         public string symbol;
+        public string[] level_order;
     }
 }

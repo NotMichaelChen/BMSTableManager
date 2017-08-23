@@ -46,6 +46,16 @@ namespace BMSTableManager.TableInfo
             get { return metadata.name; }
         }
 
+        public string[] LevelOrder
+        {
+            get { return metadata.level_order; }
+        }
+
+        public string Symbol
+        {
+            get { return metadata.symbol; }
+        }
+
         //Updates the table by redownloading all of the info
         public void UpdateTable()
         {
