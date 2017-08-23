@@ -3,7 +3,7 @@ using System.Net;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 
-namespace BMSTableManager
+namespace BMSTableManager.TableInfo
 {
     //Stores an instance of a BMS difficulty table
     public class BMSTable
