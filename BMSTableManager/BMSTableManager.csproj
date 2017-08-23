@@ -72,7 +72,7 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TableDownloader.cs" />
+    <Compile Include="BMSTable.cs" />
     <Compile Include="TableHeader.cs" />
   </ItemGroup>
   <ItemGroup>

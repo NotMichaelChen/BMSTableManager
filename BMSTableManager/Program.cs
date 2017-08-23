@@ -7,7 +7,7 @@ namespace BMSTableManager
     {
         public static void Main(string[] args)
         {
-            TableDownloader table = new TableDownloader("http://3228monsta.web.fc2.com/monstajoy.html");
+            BMSTable table = new BMSTable("http://3228monsta.web.fc2.com/monstajoy.html");
 
             Application.Init();
             MainWindow win = new MainWindow();
