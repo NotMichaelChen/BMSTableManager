@@ -5,6 +5,7 @@ using Gtk;
 using BMSTableManager;
 using BMSTableManager.TableInfo;
 using BMSTableManager.TableLoaders;
+using BMSTableManager.WindowTools;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -45,10 +46,7 @@ public partial class MainWindow : Gtk.Window
 
         if(usedurls.Contains(url))
         {
-            MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Error, 
-                                                     ButtonsType.Close, "Error: Table already loaded");
-            dialog.Run();
-            dialog.Destroy();
+            MessageDialogHelper.ErrorDialog(this, ButtonsType.Close, "Error: Table already loaded");
         }
         else
         {
@@ -61,18 +59,12 @@ public partial class MainWindow : Gtk.Window
                 TableSelectorComboBox.AppendText(downloadedtable.TableName);
                 TableURLEntry.Text = "";
 
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Info, 
-                                                                                            ButtonsType.Close, "Table added successfully");
-                dialog.Run();
-                dialog.Destroy();
+                MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table added successfully");
             }
             catch(Exception ex)
             {
                 //TODO: Make more descriptive errors
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Error, 
-                                                         ButtonsType.Close, ex.ToString());
-                dialog.Run();
-                dialog.Destroy();
+                MessageDialogHelper.ErrorDialog(this, ButtonsType.Close, ex.ToString());
             }
         }
     }
@@ -82,9 +74,6 @@ public partial class MainWindow : Gtk.Window
         CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
         gen.GenerateTable();
 
-        MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent, MessageType.Info, 
-                                                 ButtonsType.Close, "Table loaded successfully\n\nYou can use the difficulty tables by adding \"CustomFolder\" to LR2");
-        dialog.Run();
-        dialog.Destroy();
+        MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table loaded successfully\n\nYou can use the difficulty tables by adding \"CustomFolder\" to LR2");
     }
 }
