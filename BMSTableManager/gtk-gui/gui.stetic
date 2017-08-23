@@ -147,12 +147,13 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="button3">
+                  <widget class="Gtk.Button" id="DeleteTableButton">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Delete Table</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnDeleteTableButtonClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>

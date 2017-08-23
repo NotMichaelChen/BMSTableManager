@@ -71,9 +71,23 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnLoadTableButtonClicked(object sender, EventArgs e)
     {
-        CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
-        gen.GenerateTable();
+        try
+        {
+            CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
+            gen.GenerateTable();
 
-        MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table loaded successfully\n\nYou can use the difficulty tables by adding \"CustomFolder\" to LR2");
+            MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table loaded successfully\n\n" +
+                                           "You can use the difficulty tables by adding \"CustomFolder\" to LR2");
+        }
+        catch(Exception ex)
+        {
+            //TODO: Make more descriptive errors
+            MessageDialogHelper.ErrorDialog(this, ButtonsType.Close, ex.ToString());
+        }
+    }
+
+    protected void OnDeleteTableButtonClicked(object sender, EventArgs e)
+    {
+        MessageDialogHelper.QuestionDialog(this, ButtonsType.OkCancel, "Are you sure you want to delete table \"" + TableSelectorComboBox.ActiveText + "\"?");
     }
 }

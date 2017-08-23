@@ -33,7 +33,7 @@ public partial class MainWindow
 
 	private global::Gtk.Button LoadTableButton;
 
-	private global::Gtk.Button button3;
+	private global::Gtk.Button DeleteTableButton;
 
 	protected virtual void Build()
 	{
@@ -136,13 +136,13 @@ public partial class MainWindow
 		w8.Expand = false;
 		w8.Fill = false;
 		// Container child hbox2.Gtk.Box+BoxChild
-		this.button3 = new global::Gtk.Button();
-		this.button3.CanFocus = true;
-		this.button3.Name = "button3";
-		this.button3.UseUnderline = true;
-		this.button3.Label = global::Mono.Unix.Catalog.GetString("Delete Table");
-		this.hbox2.Add(this.button3);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.button3]));
+		this.DeleteTableButton = new global::Gtk.Button();
+		this.DeleteTableButton.CanFocus = true;
+		this.DeleteTableButton.Name = "DeleteTableButton";
+		this.DeleteTableButton.UseUnderline = true;
+		this.DeleteTableButton.Label = global::Mono.Unix.Catalog.GetString("Delete Table");
+		this.hbox2.Add(this.DeleteTableButton);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.DeleteTableButton]));
 		w9.Position = 1;
 		w9.Expand = false;
 		w9.Fill = false;
@@ -166,5 +166,6 @@ public partial class MainWindow
 		this.SelectLR2FolderAction.Activated += new global::System.EventHandler(this.OnSelectLR2FolderActionActivated);
 		this.LoadURLButton.Clicked += new global::System.EventHandler(this.OnLoadURLButtonClicked);
 		this.LoadTableButton.Clicked += new global::System.EventHandler(this.OnLoadTableButtonClicked);
+		this.DeleteTableButton.Clicked += new global::System.EventHandler(this.OnDeleteTableButtonClicked);
 	}
 }

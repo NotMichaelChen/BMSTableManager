@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Collections.Generic;
+
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 
@@ -67,6 +69,12 @@ namespace BMSTableManager.TableInfo
             //Redownload table
             jsonurl = constructURL(tableurl, metadata.data_url);
             json = client.DownloadString(jsonurl);
+        }
+
+        //Returns a list of charts from the difficulty table
+        public List<TableEntry> GetCharts()
+        {
+            return JsonConvert.DeserializeObject<List<TableEntry>>(json);
         }
 
         //Some sites may only link the name of the json header/table json, so we must construct the url ourselves
