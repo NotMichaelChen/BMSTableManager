@@ -73,7 +73,9 @@ public partial class MainWindow : Gtk.Window
     {
         try
         {
+            TagEditor editor = new TagEditor(path, tables[TableSelectorComboBox.ActiveText]);
             CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
+            editor.AssignTags();
             gen.GenerateTable();
 
             MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table loaded successfully\n\n" +
@@ -88,6 +90,21 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnDeleteTableButtonClicked(object sender, EventArgs e)
     {
-        MessageDialogHelper.QuestionDialog(this, ButtonsType.OkCancel, "Are you sure you want to delete table \"" + TableSelectorComboBox.ActiveText + "\"?");
+        try
+        {
+            ResponseType resp = (ResponseType)MessageDialogHelper.QuestionDialog(this, ButtonsType.OkCancel, "Are you sure you want to delete table \"" + TableSelectorComboBox.ActiveText + "\"?");
+            if(resp == ResponseType.Ok)
+            {
+                TagEditor editor = new TagEditor(path, tables[TableSelectorComboBox.ActiveText]);
+                editor.RemoveTags();
+
+                MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table removed successfully");
+            }
+        }
+        catch(Exception ex)
+        {
+            //TODO: Make more descriptive errors
+            MessageDialogHelper.ErrorDialog(this, ButtonsType.Close, ex.ToString());
+        }
     }
 }
