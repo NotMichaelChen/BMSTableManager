@@ -76,7 +76,9 @@ public partial class MainWindow : Gtk.Window
             TagEditor editor = new TagEditor(path, tables[TableSelectorComboBox.ActiveText]);
             CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
             editor.AssignTags();
-            gen.GenerateTable();
+            //TODO: Allow a hard update to force regenerate the table
+            if(!gen.IsTableExists())
+                gen.GenerateTable();
 
             MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table loaded successfully\n\n" +
                                            "You can use the difficulty tables by adding \"CustomFolder\" to LR2");
@@ -96,7 +98,9 @@ public partial class MainWindow : Gtk.Window
             if(resp == ResponseType.Ok)
             {
                 TagEditor editor = new TagEditor(path, tables[TableSelectorComboBox.ActiveText]);
+                CustomFolderGenerator gen = new CustomFolderGenerator(tables[TableSelectorComboBox.ActiveText]);
                 editor.RemoveTags();
+                gen.DeleteTable();
 
                 MessageDialogHelper.InfoDialog(this, ButtonsType.Close, "Table removed successfully");
             }
