@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Gtk;
+
+using Newtonsoft.Json;
 
 using BMSTableManager;
 using BMSTableManager.TableInfo;
@@ -110,5 +113,17 @@ public partial class MainWindow : Gtk.Window
             //TODO: Make more descriptive errors
             MessageDialogHelper.ErrorDialog(this, ButtonsType.Close, ex.ToString());
         }
+    }
+
+    private void saveTables()
+    {
+        string data = JsonConvert.SerializeObject(tables);
+        File.WriteAllText("data.json", data);
+    }
+
+    private void loadTables()
+    {
+        string data = File.ReadAllText("data.json");
+        tables = JsonConvert.DeserializeObject<Dictionary<string, BMSTable>>(data);
     }
 }

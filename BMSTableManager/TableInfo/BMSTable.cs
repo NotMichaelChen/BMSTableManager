@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 namespace BMSTableManager.TableInfo
 {
     //Stores an instance of a BMS difficulty table
+    [JsonObject(MemberSerialization.Fields)]
     public class BMSTable
     {
         private string tableurl;
@@ -15,12 +16,11 @@ namespace BMSTableManager.TableInfo
         private string jsonurl;
 
         private TableHeader metadata;
-        private string json;
 
         //Given a valid BMS table link, download the json of the table
         public BMSTable(string url)
         {
-            tableurl = url;
+            tableurl = url.Trim();
 
             //Main table contains a reference meta tag pointing to a header json
             HtmlWeb htmlclient = new HtmlWeb();
@@ -61,19 +61,18 @@ namespace BMSTableManager.TableInfo
         //Updates the table by redownloading all of the info
         public void UpdateTable()
         {
-            //Redownload metadata
             WebClient client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
             string jsonheaderdata = client.DownloadString(headerurl);
             metadata = JsonConvert.DeserializeObject<TableHeader>(jsonheaderdata);
-
-            //Redownload table
             jsonurl = constructURL(tableurl, metadata.data_url);
-            json = client.DownloadString(jsonurl);
         }
 
         //Returns a list of charts from the difficulty table
+        //Essentially deserializes the json downloaded from the jsonurl
         public List<TableEntry> GetCharts()
         {
+            WebClient client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
+            string json = client.DownloadString(jsonurl);
             return JsonConvert.DeserializeObject<List<TableEntry>>(json);
         }
 
@@ -83,7 +82,7 @@ namespace BMSTableManager.TableInfo
             if(!newsection.StartsWith("http"))
             {
                 //the +1 allows us to include the slash
-                return url.Substring(0, url.LastIndexOf('/')+1) + newsection;
+                return url.Substring(0, url.LastIndexOf('/')+1) + newsection.Trim('/');
             }
             return newsection;
         }
